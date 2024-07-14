@@ -13,7 +13,7 @@
 
 
 
-<title>Game Framework Lite | BLOG</title>
+<title>Writing Clean Conditions | BLOG</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Game Framework Lite</h1>
+            <h1 class="post-title">Writing Clean Conditions</h1>
             
                 <div class="post-meta">
                     
@@ -205,14 +205,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">July 13, 2024&nbsp;&nbsp;21:17:10</a>
+                        Date: <a href="#">July 14, 2024&nbsp;&nbsp;14:30:38</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Game-Framework-Lite/">Game Framework Lite</a>
+                                <a href="/categories/C-Clean-Code/">C# Clean Code</a>
                             
                         </span>
                     
@@ -221,13 +221,37 @@
         </header>
 
         <div class="post-content">
-            <h1 id="Game-Framework-Lite"><a href="#Game-Framework-Lite" class="headerlink" title="Game Framework Lite"></a>Game Framework Lite</h1><h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ol>
-<li>功能封装</li>
-<li>减少代码冗余</li>
-<li>加速开发</li>
-</ol>
+            <h1 id="Writing-Clean-Conditions"><a href="#Writing-Clean-Conditions" class="headerlink" title="Writing Clean Conditions"></a>Writing Clean Conditions</h1><h4 id="使用变量和方法分解条件"><a href="#使用变量和方法分解条件" class="headerlink" title="使用变量和方法分解条件"></a>使用变量和方法分解条件</h4><ul>
+<li>条件里面包含太多逻辑会花费太多理解</li>
+<li>提取方法同时需要考虑这个方法是否合理或应该在这里吗？</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(customer.IsSolider())	<span class="comment">// ✔</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(customer.height &gt; <span class="number">1.7</span> &amp;&amp; customer.weight &lt; <span class="number">169.</span>..)	<span class="comment">// X</span></span><br></pre></td></tr></table></figure>
+
 <hr>
-<p>理解：框架的设计取决于作者的技术水平和设计理念，存在多种不同的框架设计。框架的强大与否很大程度上取决于设计者的技术水平。</p>
+<h4 id="Magic-Number-String"><a href="#Magic-Number-String" class="headerlink" title="Magic Number String"></a>Magic Number String</h4><ul>
+<li>避免使用意义不清的模糊变量，使用枚举或者其他具有描述性的变量来编写</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(customer.height &gt; <span class="number">1.7</span>)</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="Avoid-Double-Negative"><a href="#Avoid-Double-Negative" class="headerlink" title="Avoid Double Negative"></a>Avoid Double Negative</h4><ul>
+<li>条件应尽量正向</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!customer.HasNotCondition())</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h4><ul>
+<li>不必要的else</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">bool</span> <span class="title">Method</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(x &gt; y)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用三元运算符代替</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> x &gt; y ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>理解：编写代码应考虑阅读性，相当应该</p>
 
         </div>
 
@@ -242,7 +266,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2024/07/13/Game-Framework-Lite/">http://example.com/2024/07/13/Game-Framework-Lite/</a></span>
+                        <span><a href="http://example.com/2024/07/14/Writing-Clean-Conditions/">http://example.com/2024/07/14/Writing-Clean-Conditions/</a></span>
                     </p>
                 
                 
@@ -266,11 +290,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/C/"># C#</a>
-                    
-                        <a href="/tags/Unity/"># Unity</a>
-                    
-                        <a href="/tags/Frmework/"># Frmework</a>
+                        <a href="/tags/C-Clean-Code/"># C#,Clean Code</a>
                     
                         
                 </span>
@@ -283,10 +303,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2024/07/14/Clean-Code-Theory/">Clean Code Theory</a>
             
-            
-            <a class="next" rel="next" href="/2024/07/13/hello-world/">Hello World</a>
+            <a class="next" rel="next" href="/2024/07/14/Formatting-Code/">Formatting Code</a>
             
         </section>
 
