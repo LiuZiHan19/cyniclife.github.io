@@ -13,7 +13,7 @@
 
 
 
-<title>Clean Code_Writing Clean Condition | BLOG</title>
+<title>Clean Code_Naming | BLOG</title>
 
 
 
@@ -127,76 +127,11 @@
                 <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    var tocbot_timer;
-    var DEPTH_MAX = 6; // 为 6 时展开所有
-    var tocbot_default_config = {
-        tocSelector: '.tocbot-list',
-        contentSelector: '.post-content',
-        headingSelector: 'h1, h2, h3, h4, h5',
-        orderedList: false,
-        scrollSmooth: true,
-        onClick: extend_click,
-    };
-
-    function extend_click() {
-        clearTimeout(tocbot_timer);
-        tocbot_timer = setTimeout(function() {
-            tocbot.refresh(obj_merge(tocbot_default_config, {
-                hasInnerContainers: true
-            }));
-        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
-    }
-
-    document.ready(function() {
-        tocbot.init(obj_merge(tocbot_default_config, {
-            collapseDepth: 1
-        }));
-    });
-
-    function expand_toc() {
-        var b = document.querySelector('.tocbot-toc-expand');
-        var expanded = b.getAttribute('data-expanded');
-        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
-        tocbot.refresh(obj_merge(tocbot_default_config, {
-            collapseDepth: expanded ? 1 : DEPTH_MAX
-        }));
-        b.innerText = expanded ? 'Expand all' : 'Collapse all';
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-    function obj_merge(target, source) {
-        for (var item in source) {
-            if (source.hasOwnProperty(item)) {
-                target[item] = source[item];
-            }
-        }
-        return target;
-    }
-</script>
-    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Clean Code_Writing Clean Condition</h1>
+            <h1 class="post-title">Clean Code_Naming</h1>
             
                 <div class="post-meta">
                     
@@ -205,29 +140,16 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">July 14, 2024&nbsp;&nbsp;14:30:38</a>
+                        Date: <a href="#">July 25, 2024&nbsp;&nbsp;8:48:24</a>
                         </span>
                     
-                    
-                        <span class="post-category">
-                    Category:
-                            
-                                <a href="/categories/Clean-Code/">Clean Code</a>
-                            
-                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <h1 id="Writing-Clean-Condition"><a href="#Writing-Clean-Condition" class="headerlink" title="Writing Clean Condition"></a>Writing Clean Condition</h1><p>Use variables and methods to decompose conditions.</p>
-<p>Consider the mental effort required.</p>
-<p>Avoid variables with vague meanings.</p>
-<p>Conditions should be positive.</p>
-<p>Avoid unnecessary else statements.</p>
-<p>Use ternary operators.</p>
-
+            
         </div>
 
         
@@ -241,7 +163,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2024/07/14/Clean%20Code_Writing%20Clean%20Condition/">http://example.com/2024/07/14/Clean%20Code_Writing%20Clean%20Condition/</a></span>
+                        <span><a href="http://example.com/2024/07/25/Clean-Code-Naming/">http://example.com/2024/07/25/Clean-Code-Naming/</a></span>
                     </p>
                 
                 
@@ -264,12 +186,6 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
-                    
-                        <a href="/tags/C/"># C#</a>
-                    
-                        <a href="/tags/Clean-Code/"># Clean Code</a>
-                    
-                        
                 </span>
             </div>
             <div>
@@ -280,10 +196,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2024/07/14/Clean%20Code_Writing%20Clean%20Method/">Clean Code_Writing Clean Method</a>
+                <a class="prev" rel="prev" href="/2024/07/25/Clean-Code-Writing-Clean-Class/">Clean Code_Writing Clean Class</a>
             
             
-            <a class="next" rel="next" href="/2024/07/14/Clean%20Code_Formatting%20Code/">Clean Code_Formatting Code</a>
+            <a class="next" rel="next" href="/2024/07/25/Clean-Code-Introduction/">Clean Code_Introduction</a>
             
         </section>
 
