@@ -127,6 +127,71 @@
                 <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
 
     
     <article class="post-wrap">
@@ -144,12 +209,46 @@
                         </span>
                     
                     
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Clean-Code/">Clean Code</a>
+                            
+                        </span>
+                    
                 </div>
             
         </header>
 
         <div class="post-content">
-            
+            <h1 id="Why-Clean-Code-Is-Essential"><a href="#Why-Clean-Code-Is-Essential" class="headerlink" title="Why Clean Code Is Essential"></a><strong>Why Clean Code Is Essential</strong></h1><p>Any fool can write code that a computer can understand.Good programmer write code that humans can understand.</p>
+<p><strong>Boy Scout Rule</strong></p>
+<p>Leave your code better that you found it.</p>
+<p>Continuous Improvement</p>
+<p><strong>Broken Windows Thory</strong></p>
+<p>Visible signs of disorder and misbehavior in an environment encourage further disorder and misbehavior, leading to serious crimes.</p>
+<p>Seemingly insignificant issues or defects can lead to larger problems.</p>
+<p><strong>YAGNI Principle</strong></p>
+<p>You Ain’t Gonna Need It.</p>
+<p>Minimize accidental complexity.</p>
+<p>Keep the focus.</p>
+<p><strong>KISS Principle</strong></p>
+<p>Keep it simple, stupid.</p>
+<p>Simplicity should be a key goal in design.</p>
+<p>Simple &#x3D; Better User Experience.</p>
+<p><strong>Principle of Least Surprise</strong></p>
+<p>Every component should behave in a way that most users expect it to behave.</p>
+<p>Consumers should trust their intuition.</p>
+<p>Obvious behaviors should be implemented.</p>
+<p><strong>Coupling</strong></p>
+<p>Changing one element requires changing other elements.</p>
+<p>Expensive to Change</p>
+<p>Decoupling isn’t free.</p>
+<p><strong>What is Duplication</strong></p>
+<p>Don’t Repeat Yourself.</p>
+<p>Not the same as “equal text”</p>
+<p>Duplicated Behaviour</p>
+
         </div>
 
         
@@ -186,6 +285,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/Clean-Code/"># Clean Code</a>
+                    
+                        
                 </span>
             </div>
             <div>
